@@ -1,0 +1,18 @@
+# Environment / secrets
+.env
+
+# Maven build output
+target/
+
+# TestNG & Surefire reports
+test-output/
+/screenshots/
+surefire-reports/
+
+# Logs
+*.log
+
+# IDE files (optional but recommended)
+.vscode/
+.idea/
+*.iml
