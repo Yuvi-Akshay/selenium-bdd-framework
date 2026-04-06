@@ -23,7 +23,6 @@ public class LoginSteps {
     @Given("user is on landing page")
     public void user_is_on_landing_page() {
         driver = DriverFactory.getDriver();
-        driver.get("https://www.freecrm.com/");
         landingPage = new LandingPage(driver);
     }
 

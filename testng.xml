@@ -1,14 +1,18 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="FreeCRM Test Suite">
+<suite name="Cucumber Suite">
 
     <listeners>
         <listener class-name="com.freecrm.listeners.ExtentTestListener"/>
     </listeners>
 
-    <test name="FreeCRM Tests">
-        <packages>
+    <test name="Cucumber Tests">
+        <!-- <packages>
             <package name="com.freecrm.tests"/>
-        </packages>
+        </packages> -->
+
+        <classes>
+            <class name="com.freecrm.runners.TestRunner"/>
+        </classes>
     </test>
 
 </suite>
