@@ -6,11 +6,14 @@ import com.freecrm.pages.HomePage;
 import com.freecrm.pages.LandingPage;
 import com.freecrm.pages.LoginPage;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class TestContext {
     private WebDriver driver;
     private LandingPage landingPage;
     private LoginPage loginPage;
     private HomePage homePage;
+    private Dotenv dotenv;
 
     public WebDriver getDriver(){
         return this.driver;
@@ -40,4 +43,12 @@ public class TestContext {
     public HomePage getHomePage(){
         return this.homePage;
     }
+
+    public void setDotenv(Dotenv dotenv){
+        this.dotenv= dotenv;
+    }
+    public Dotenv getDotenv(){
+        return this.dotenv;
+    }
+
 }

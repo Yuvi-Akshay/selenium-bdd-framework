@@ -10,26 +10,29 @@ import com.freecrm.utils.DriverFactory;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class Hooks {
-    
+
     private Properties prop;
     private TestContext context;
 
-    public Hooks(TestContext context){
+    public Hooks(TestContext context) {
         this.context = context;
     }
 
     @Before
-    public void setUp(){
+    public void setUp() {
 
         ConfigReader configReader = new ConfigReader();
         DriverFactory driverFactory = new DriverFactory();
 
+        Dotenv dotenv = Dotenv.load();
+        context.setDotenv(dotenv);
+
         prop = configReader.initProp();
         WebDriver driver = driverFactory.initDriver(prop.getProperty("browser"));
         context.setDriver(driver);
-
 
         context.getDriver().manage().window().maximize();
         context.getDriver().manage().deleteAllCookies();
@@ -38,7 +41,7 @@ public class Hooks {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         context.getDriver().quit();
     }
 }

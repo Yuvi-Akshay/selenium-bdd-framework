@@ -34,9 +34,8 @@ public class LoginSteps {
 
     @When("user enters valid credentials")
     public void user_enters_valid_credentials() {
-        Dotenv dotenv = Dotenv.load();
-        String userName = dotenv.get("FREECRM_USERNAME");
-        String password = dotenv.get("FREECRM_PASSWORD");
+        String userName = context.getDotenv().get("FREECRM_USERNAME");
+        String password = context.getDotenv().get("FREECRM_PASSWORD");
         HomePage homePage = context.getLoginPage().login(userName, password);
         context.setHomePage(homePage);
     }
