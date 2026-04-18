@@ -13,8 +13,12 @@ import io.cucumber.java.Before;
 
 public class Hooks {
     
-    private WebDriver driver;
     private Properties prop;
+    private TestContext context;
+
+    public Hooks(TestContext context){
+        this.context = context;
+    }
 
     @Before
     public void setUp(){
@@ -23,16 +27,18 @@ public class Hooks {
         DriverFactory driverFactory = new DriverFactory();
 
         prop = configReader.initProp();
-        driver = driverFactory.initDriver(prop.getProperty("browser"));
+        WebDriver driver = driverFactory.initDriver(prop.getProperty("browser"));
+        context.setDriver(driver);
 
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(prop.getProperty("url"));
+
+        context.getDriver().manage().window().maximize();
+        context.getDriver().manage().deleteAllCookies();
+        context.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        context.getDriver().get(prop.getProperty("url"));
     }
 
     @After
     public void tearDown(){
-        driver.quit();
+        context.getDriver().quit();
     }
 }
